@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face{
+        font-family: Muller;
+        font-weight: 800;
+        font-style: normal;
+        src: url("/public/fonts/MullerExtraBold.woff")
+        format("opentype");
+    }
+    @font-face{
+        font-family: Muller;
+        font-weight: 700;
+        font-style: normal;
+        src: url("/public/fonts/MullerBold.woff2")
+        format("opentype");
+    }
+    @font-face{
+        font-family: Muller;
+        font-weight: 500;
+        font-style: normal;
+        src: url("/public/fonts/MullerMedium.woff2")
+        format("opentype");
+    }
+    @font-face{
+        font-family: Muller;
+        font-weight: 400;
+        font-style: normal;
+        src: url("/public/fonts/MullerRegular.woff2")
+        format("opentype");
+    }
+    html {
+        font-family: Muller, sistem-ui, sans-serif;
+    }
+}
+
+@layer components  {
+    #app {
+        @apply h-screen flex flex-col justify-center items-center bg-indigo-100 ;
+    }
+    .div-logo{
+        @apply absolute top-6 left-6 bg-indigo-400 py-1 px-2 rounded-md
+    }
+    .logo{
+        @apply  font-medium text-xl text-white
+
+    }
+    .main-container{
+        @apply absolute top-28
+    }
+    .password-input{
+        @apply max-w-[354.64px] min-w-[354.64px] border border-gray-300 rounded-md px-5 py-2 hover:border-gray-400 my-2  font-normal text-2xl
+        resize-none overflow-hidden leading-relaxed focus:outline-none
+    }
+    .enter-text{
+        @apply font-bold text-4xl
+    }
+
+    .rules-div{
+        @apply max-w-[354.64px] min-w-[354.64px] flex flex-col justify-center items-center
+    }
+
+    .rule{
+        @apply  bg-rose-200 pb-1 rounded-md  border-2  text-xl border-rose-700 mb-2
+    }
+
+    .rule-title{
+        @apply bg-rose-400 px-3 py-1 font-medium rounded-t-md
+    }
+
+    .rule-text{
+        @apply px-3 py-1
+    }
+
+    .rule-done{
+        @apply bg-emerald-200  border-emerald-700
+    }
+
+    .rule-done-title{
+        @apply bg-emerald-400
+    }
+
+
+}
