@@ -2,6 +2,7 @@ import { inputPassword } from "./game.js";
 import { rulesDiv } from "./game.js";
 import { addRule } from "./addAndUpdateRules.js";
 import { updateRuleStatus } from "./addAndUpdateRules.js";
+import{ specialCharacters } from "./consts.js";
 
 const rules = [
     () => inputPassword.value.length >= 5,
@@ -24,10 +25,25 @@ export function checkRules() {
         updateRuleStatus(2, true);
         addRule(3, 'Your password must include an uppercase letter.', rulesDiv);
 
-    } else if(!(/[0-9]/.test(inputPassword.value))&& document.getElementById(`rule-2`) !== null){
+    } else if(!(/[0-9]/.test(inputPassword.value)) && document.getElementById(`rule-2`) !== null){
         console.log('no 2')
         updateRuleStatus(2, false);
     }
+    if (/[A-Z]/.test(inputPassword.value) && document.getElementById(`rule-3`) !== null){
+        console.log('yes 3')
+        updateRuleStatus(3, true);
+        addRule(4, 'Your password must include a special character.', rulesDiv);
 
-
+    } else if(!(/[A-Z]/.test(inputPassword.value)) && document.getElementById(`rule-3`) !== null){
+        console.log('no 3')
+        updateRuleStatus(3, false);
+    }
+    if(specialCharacters.test(inputPassword.value) && document.getElementById(`rule-4`) !== null){
+        console.log('yes 4')
+        updateRuleStatus(4, true);
+        addRule(5, 'The digits in your password must add up to 25.', rulesDiv);
+    } else if(!(specialCharacters.test(inputPassword.value)) && document.getElementById(`rule-4`) !== null){
+        console.log('no 4')
+        updateRuleStatus(4, false);
+    }
 }

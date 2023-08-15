@@ -38,7 +38,7 @@
 
 @layer components  {
     #app {
-        @apply h-screen flex flex-col justify-center items-center bg-indigo-100 ;
+        @apply flex min-h-screen flex-col justify-center items-center  bg-indigo-100 ;
     }
     .div-logo{
         @apply absolute top-6 left-6 bg-indigo-400 py-1 px-2 rounded-md
