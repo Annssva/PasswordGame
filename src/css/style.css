@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --scrollbar-track-bg: rgb(224 231 255);
+    --scrollbar-thumb-bg: rgb(165 180 252);
+}
+
 @layer base {
     @font-face{
         font-family: Muller;
@@ -41,7 +46,7 @@
         @apply min-h-screen bg-indigo-100  dark:bg-zinc-800
     }
     .div-logo{
-        @apply absolute top-6 left-6 bg-indigo-400  py-1 px-2 rounded-md
+        @apply absolute top-6 left-6 bg-indigo-400 dark:bg-indigo-600 py-1 px-2 rounded-md
     }
     .logo{
         @apply  font-medium text-sm sm:text-lg md:text-xl text-white
@@ -82,20 +87,22 @@
     .rule-done-title{
         @apply bg-emerald-400
     }
-    /* Применяется к стандартным полосам прокрутки */
+
+    .scrollbar-dark{
+        background-color: rgb(39 39 42);
+    }
+
     ::-webkit-scrollbar {
-        width: 7px; /* ширина полосы прокрутки */
+        width: 7px;
     }
 
-    /* Применяется к ползунку прокрутки */
     ::-webkit-scrollbar-thumb {
-        background-color: #888; /* цвет ползунка */
-        border-radius: 5px; /* скругление углов ползунка */
+        background-color:   var(--scrollbar-thumb-bg);
+        border-radius: 5px;
     }
 
-    /* Применяется к треку прокрутки (фону) */
     ::-webkit-scrollbar-track {
-        background-color: rgb(224 231 255); /* цвет фона */
+        background-color: var(--scrollbar-track-bg);
     }
 }
 
