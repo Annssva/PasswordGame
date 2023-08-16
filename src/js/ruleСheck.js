@@ -3,6 +3,7 @@ import { rulesDiv } from "./game.js";
 import { addRule } from "./addAndUpdateRules.js";
 import { updateRuleStatus } from "./addAndUpdateRules.js";
 import{ specialCharacters } from "./consts.js";
+import {months} from "./consts.js";
 
 export function checkRules() {
     console.log(inputPassword.value)
@@ -41,6 +42,7 @@ export function checkRules() {
         console.log('no 4')
         updateRuleStatus(4, false);
     }
+
     const passwordNumbers = inputPassword.value.split('').filter(char => /\d/.test(char))
     let numbersSum = 0
     for(let number of passwordNumbers){
@@ -51,10 +53,31 @@ export function checkRules() {
     if (numbersSum === 19 && document.getElementById(`rule-5`) !== null){
         console.log('yes 5')
         updateRuleStatus(5, true);
-        // addRule(5, 'The digits in your password must add up to 25.', rulesDiv);
+        addRule(6, 'Your password must include a month of the year.', rulesDiv);
     } else if(numbersSum !== 19 && document.getElementById(`rule-5`) !== null){
-        console.log('no 4')
+        console.log('no 5')
         updateRuleStatus(5, false);
     }
 
+    let wordsOnly = inputPassword.value.match(/[A-Za-z]+/g);
+
+    if (wordsOnly) {
+        wordsOnly = wordsOnly.map(word => word.toLowerCase());
+        console.log(wordsOnly); // ["hello", "world", "this", "is", "a", "test"]
+    } else {
+        console.log('No words found.');
+    }
+
+    if (wordsOnly.some(word => months.includes(word)) && document.getElementById('rule-6') !== null) {
+        console.log('yes 6');
+        updateRuleStatus(6, true);
+    } else if (!(wordsOnly.some(word => months.includes(word))) && document.getElementById('rule-6') !== null) {
+        console.log('no 6');
+        updateRuleStatus(6, false);
+    }
+
 }
+
+// Your password must include a month of the year.
+// Your password must include a roman numeral.
+// Your password must include one of our sponsors:
