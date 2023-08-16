@@ -38,17 +38,17 @@
 
 @layer components  {
     #app {
-        @apply flex min-h-screen flex-col justify-center items-center  bg-indigo-100 ;
+        @apply min-h-screen bg-indigo-100  dark:bg-zinc-800
     }
     .div-logo{
-        @apply absolute top-6 left-6 bg-indigo-400 py-1 px-2 rounded-md
+        @apply absolute top-6 left-6 bg-indigo-400  py-1 px-2 rounded-md
     }
     .logo{
-        @apply  font-medium text-base sm:text-lg md:text-xl text-white
+        @apply  font-medium text-sm sm:text-lg md:text-xl text-white
 
     }
     .main-container{
-        @apply absolute top-28
+        @apply  flex min-h-min flex-col justify-center items-center  bg-indigo-100 dark:bg-zinc-800
     }
     .password-input{
         @apply max-w-[280px] min-w-[280px] sm:max-w-[295px] sm:min-w-[295px] md:max-w-[354.64px] md:min-w-[354.64px]  border border-gray-300 rounded-md px-5 py-2 hover:border-gray-400 my-2
@@ -56,7 +56,7 @@
         resize-none overflow-hidden leading-relaxed focus:outline-none
     }
     .enter-text{
-        @apply font-bold text-2xl sm:text-3xl md:text-4xl
+        @apply font-bold text-2xl sm:text-3xl md:text-4xl mt-[3em] dark:text-white
     }
 
     .rules-div{
@@ -82,6 +82,20 @@
     .rule-done-title{
         @apply bg-emerald-400
     }
+    /* Применяется к стандартным полосам прокрутки */
+    ::-webkit-scrollbar {
+        width: 7px; /* ширина полосы прокрутки */
+    }
 
+    /* Применяется к ползунку прокрутки */
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* цвет ползунка */
+        border-radius: 5px; /* скругление углов ползунка */
+    }
 
+    /* Применяется к треку прокрутки (фону) */
+    ::-webkit-scrollbar-track {
+        background-color: rgb(224 231 255); /* цвет фона */
+    }
 }
+
