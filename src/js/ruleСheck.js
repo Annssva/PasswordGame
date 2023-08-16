@@ -4,11 +4,6 @@ import { addRule } from "./addAndUpdateRules.js";
 import { updateRuleStatus } from "./addAndUpdateRules.js";
 import{ specialCharacters } from "./consts.js";
 
-const rules = [
-    () => inputPassword.value.length >= 5,
-    () => /[0-9]/.test(inputPassword.value) // Проверка на наличие хотя бы одной цифры
-];
-const ruleDivs = [];
 export function checkRules() {
     console.log(inputPassword.value)
     if(inputPassword.value.length >= 5){
