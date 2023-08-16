@@ -41,9 +41,25 @@ export function checkRules() {
     if(specialCharacters.test(inputPassword.value) && document.getElementById(`rule-4`) !== null){
         console.log('yes 4')
         updateRuleStatus(4, true);
-        addRule(5, 'The digits in your password must add up to 25.', rulesDiv);
+        addRule(5, 'The digits in your password must add up to 19.', rulesDiv);
     } else if(!(specialCharacters.test(inputPassword.value)) && document.getElementById(`rule-4`) !== null){
         console.log('no 4')
         updateRuleStatus(4, false);
     }
+    const passwordNumbers = inputPassword.value.split('').filter(char => /\d/.test(char))
+    let numbersSum = 0
+    for(let number of passwordNumbers){
+        number = Number(number)
+        numbersSum += number
+        console.log(numbersSum)
+    }
+    if (numbersSum === 19 && document.getElementById(`rule-5`) !== null){
+        console.log('yes 5')
+        updateRuleStatus(5, true);
+        // addRule(5, 'The digits in your password must add up to 25.', rulesDiv);
+    } else if(numbersSum !== 19 && document.getElementById(`rule-5`) !== null){
+        console.log('no 4')
+        updateRuleStatus(5, false);
+    }
+
 }
