@@ -3,7 +3,8 @@ import { rulesDiv } from "./game.js";
 import { addRule } from "./addAndUpdateRules.js";
 import { updateRuleStatus } from "./addAndUpdateRules.js";
 import{ specialCharacters } from "./consts.js";
-import {months} from "./consts.js";
+import { months } from "./consts.js";
+import { romanNumerals } from "./consts.js";
 
 export function checkRules() {
     console.log(inputPassword.value)
@@ -59,23 +60,29 @@ export function checkRules() {
         updateRuleStatus(5, false);
     }
 
-    let wordsOnly = inputPassword.value.match(/[A-Za-z]+/g);
+    const wordsOnly = inputPassword.value.match(/[A-Za-z]+/g);
 
     if (wordsOnly) {
-        wordsOnly = wordsOnly.map(word => word.toLowerCase());
-        console.log(wordsOnly); // ["hello", "world", "this", "is", "a", "test"]
+        const lowercaseWords = wordsOnly.map(word => word.toLowerCase());
+
+        const foundMonth = lowercaseWords.find(word => months.some(month => word.includes(month)));
+
+        if (foundMonth && document.getElementById('rule-6') !== null) {
+            updateRuleStatus(6, true);
+            addRule(7, 'Your password must include a roman numeral.', rulesDiv);
+        } else if (!foundMonth && document.getElementById('rule-6') !== null) {
+            updateRuleStatus(6, false);
+        }
     } else {
         console.log('No words found.');
     }
 
-    if (wordsOnly.some(word => months.includes(word)) && document.getElementById('rule-6') !== null) {
-        console.log('yes 6');
-        updateRuleStatus(6, true);
-    } else if (!(wordsOnly.some(word => months.includes(word))) && document.getElementById('rule-6') !== null) {
-        console.log('no 6');
-        updateRuleStatus(6, false);
+    if(romanNumerals.test(inputPassword.value) && document.getElementById(`rule-7`) !== null){
+        updateRuleStatus(7, true);
+        // addRule(5, 'The digits in your password must add up to 19.', rulesDiv);
+    } else if(!(romanNumerals.test(inputPassword.value)) && document.getElementById(`rule-7`) !== null){
+        updateRuleStatus(7, false);
     }
-
 }
 
 // Your password must include a month of the year.
